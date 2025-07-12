@@ -1,0 +1,71 @@
+# SFT Data Generation Pipeline Configuration
+# This is a sample configuration file that demonstrates all available options
+
+# API Configuration
+api:
+  # API keys - can be set via environment variables or command line
+  claude_api_key: null  # Set via CLAUDE_API_KEY environment variable
+  gemini_api_key: null  # Set via GEMINI_API_KEY environment variable
+  openai_api_key: null  # Set via OPENAI_API_KEY environment variable
+  
+  # Rate limiting
+  max_requests_per_minute: 50
+  max_concurrent_requests: 5
+  
+  # Retry configuration
+  max_retries: 3
+  retry_delay: 1.0
+
+# Data Configuration
+data:
+  # Input and output paths
+  input_data_path: "data/input"
+  output_data_path: "data/output"
+  
+  # Data splitting ratios
+  train_ratio: 0.8
+  test_ratio: 0.2
+  random_seed: 42
+  
+  # Supported dataset types
+  supported_datasets:
+    - "gala"
+    - "browsecomp"
+    - "custom"
+  
+  # Data shuffling
+  shuffle_data: true
+
+# Generation Configuration
+generation:
+  # Generation parameters
+  max_rounds: 10
+  temperature: 0.7
+  max_tokens: 2048
+  
+  # Model preferences (in order of preference)
+  model_preferences:
+    - "claude-3-sonnet-20240229"
+    - "gemini-1.5-pro"
+    - "gpt-4"
+  
+  # Quality control
+  min_answer_length: 10
+  max_answer_length: 4000
+  
+  # Filtering
+  filter_duplicates: true
+  similarity_threshold: 0.85
+
+# Pipeline Configuration
+# Logging
+log_level: "INFO"
+log_file: "logs/pipeline.log"
+
+# Processing
+batch_size: 16
+num_workers: 4
+
+# Resume capability
+enable_resume: true
+checkpoint_every: 100
